@@ -1,0 +1,25 @@
+.productdisplay {
+    display: flex;
+    margin: 0px 170px;
+}
+
+.productdisplay_left {
+    display: flex;
+    flex-direction: column; /* Hiển thị các phần tử con theo chiều dọc */
+    gap: 16px;
+}
+
+.productdissplay_img_list {
+    display: flex;
+    gap: 16px;
+}
+
+.productdissplay_img_list img {
+    height: 100px;
+    
+}
+
+.productdissplay_main_img {
+    width: 400px;
+    height: 300px;
+}
