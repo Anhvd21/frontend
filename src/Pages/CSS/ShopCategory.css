@@ -18,20 +18,21 @@
     font-weight: 600;
 }
 .shopcategory-products {
-    margin: 20px auto; /* Adjusted margin */
-    max-width: 100%; /* Set a maximum width for the container */
+    margin: 20px auto;
+    margin-left: 110px; 
+    max-width: 100%; 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: 20px; /* Added column gap for better spacing */
+    column-gap: 20px;
     row-gap: 80px;
 }
 .shopcategory-loadmore{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px auto; /* Adjusted margin */
-    width: 100%; /* Set width to 100% */
-    max-width: 233px; /* Added max-width for responsiveness */
+    margin: 30px auto; 
+    width: 100%; 
+    max-width: 233px; 
     height: 69px;
     border-radius: 75px;
     background: #ededed;

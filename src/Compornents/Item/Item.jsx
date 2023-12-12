@@ -1,13 +1,15 @@
 import React from "react";
-import './Item.css'
+import { Link } from "react-router-dom";
+import './Item.css';
+
 const Item = (props) => {
     return (
         <div className="item">
-            
-            <a href={`/product/${props.id}`}>
-  <img onClick={window.scrollTo(0,0)} src={props.image} alt="" />
-</a>
-            
+
+            <Link to={`/product/${props.id}`}>
+                <img onClick={window.scrollTo(0, 0)} src={props.image} alt="" />
+            </Link>
+
             <p>{props.name}</p>
             <div className="item-prices">
                 <div className="item-prices-new">

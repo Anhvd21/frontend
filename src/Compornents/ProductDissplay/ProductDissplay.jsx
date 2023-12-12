@@ -3,8 +3,12 @@ import './ProductDissplay.css';
 import star_icon from "../Assets/star_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
 const ProductDissplay = (props) => {
-    const {product} = props;
-    const {addToCart} = useContext(ShopContext)
+    const { product } = props;
+
+    const { addToCart } = useContext(ShopContext)
+
+    console.log("reload");
+
     return (
         <div className='productdisplay'>
             <div className="productdisplay_left">
@@ -33,25 +37,25 @@ const ProductDissplay = (props) => {
                     <div className="productdisplay-right-price-new" >${product.new_price}</div>
                 </div>
                 <div className="productdisplay-right-description">
-                Feel free to customize the template based on the specific details of the shirt you're describing. Include information about the fabric, color, design features, and any unique qualities that make the shirt stand out.
+                    Feel free to customize the template based on the specific details of the shirt you're describing. Include information about the fabric, color, design features, and any unique qualities that make the shirt stand out.
                 </div>
                 <div className="productdisplay-right-size" >
-                <h1>Select Size</h1>
-                <div className="productdisplay-size" >
-                    <div>S</div>
-                    <div>M</div>
-                    <div>L</div>
-                    <div>XL</div>
-                    <div>XXL</div>
+                    <h1>Select Size</h1>
+                    <div className="productdisplay-size" >
+                        <div>S</div>
+                        <div>M</div>
+                        <div>L</div>
+                        <div>XL</div>
+                        <div>XXL</div>
+                    </div>
                 </div>
-            </div>
-            <button onClick={()=>{addToCart(product.id)}}>ADD TO CART</button>
-            <p className="productdisplay-right-category"><span>Category :</span> Woman, T-Shirt, Crop Top</p>
-            <p className="productdisplay-right-category"><span>Tags :</span> Mordern, Lastest</p>
+                <button onClick={() => { addToCart(product.id) }}>ADD TO CART</button>
+                <p className="productdisplay-right-category"><span>Category :</span> Woman, T-Shirt, Crop Top</p>
+                <p className="productdisplay-right-category"><span>Tags :</span> Mordern, Lastest</p>
             </div>
 
         </div>
-        
+
     )
 }
 export default ProductDissplay

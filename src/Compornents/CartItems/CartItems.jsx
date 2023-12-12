@@ -1,9 +1,32 @@
-import React, { useContext } from "react";
-import './CartItems.css'
+import React, { useContext, useState, useEffect } from "react";
+import './CartItems.css';
 import { ShopContext } from "../../Context/ShopContext";
-import remove_icon from "../Assets/cart_cross_icon.png"
+import remove_icon from "../Assets/cart_cross_icon.png";
+
 const CartItems = () => {
-    const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(ShopContext);
+    const { getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
+
+    const [itemsInCart, setItemsInCart] = useState([]);
+    const [subtotal, setSubtotal] = useState(0);
+    const [shippingFee, setShippingFee] = useState(0);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        if (all_product.length > 0 && all_product.length > 0) {
+            let newSubtotal = 0;
+            const newCartItems = all_product.filter(item => cartItems[item.id] > 0);
+
+            console.log("newCartItems", newCartItems)
+
+            newCartItems.forEach(item => { newSubtotal += item.new_price * cartItems[item.id] })
+
+
+            setItemsInCart(newCartItems);
+            setSubtotal(newSubtotal);
+        }
+    }, [all_product, cartItems])
+
+
     return (
         <div className="cartitems">
             <div className="caritems-format-main">
@@ -14,30 +37,25 @@ const CartItems = () => {
                 <p>Remove</p>
             </div>
             <hr />
-            {all_product.map((e)=>{
-                if(cartItems[e.id]>0)
-                {
-                    return <div key={e.id}>
-                    <div className="cartitems-format caritems-format-main">
-                        <img src={e.image} alt="" className="icon"/>
-                        <p>{e.name} </p>
-                        <p> ${e.new_price} </p>
-                        <button className="cartitems-quantity">{cartItems[e.id]} </button>
-                        <p>${e.new_price*cartItems[e.id]} </p>
-                        <img className="remove_icon" src={remove_icon} onClick={()=>{removeFromCart(e.id)}} alt="" />
-                    </div>
-                    <hr />
+            {itemsInCart.map((item) => <div key={item.id}>
+                <div className="cartitems-format caritems-format-main">
+                    <img src={item.image} alt="" className="icon" />
+                    <p>{item.name} </p>
+                    <p> ${item.new_price} </p>
+                    <button className="cartitems-quantity">{cartItems[item.id]} </button>
+                    <p>${item.new_price * cartItems[item.id]} </p>
+                    <img className="remove_icon" src={remove_icon} onClick={() => { removeFromCart(item.id) }} alt="" />
                 </div>
-                }
-                return null;
-            })}
+                <hr />
+            </div>)}
+
             <div className="cartitems-down">
                 <div className="total">
                     <h1>Cart Totals</h1>
                     <div>
                         <div className="total-item">
-                            <p>Subtatal</p>
-                            <p>${getTotalCartAmount}</p>
+                            <p>Subtotal</p>
+                            <p>{subtotal}</p>
                         </div>
                         <hr />
                         <div className="total-item">
@@ -47,7 +65,7 @@ const CartItems = () => {
                         <hr />
                         <div className="total-item">
                             <p>Total</p>
-                            <p>${getTotalCartAmount}</p>
+                            <p>{subtotal}</p>
                         </div>
                     </div>
                     <button>PROCEED TO CHECKOUT</button>
