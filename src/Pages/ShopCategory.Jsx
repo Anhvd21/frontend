@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import './CSS/ShopCategory.css'
-import { ShopContext } from "../Context/ShopContext";
-import dropdown_icon from "../Compornents/Assets/dropdown_icon.png"
+import "./CSS/ShopCategory.css";
+import dropdown_icon from "../Compornents/Assets/dropdown_icon.png";
 import Item from "../Compornents/Item/Item";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const ShopCategory = ({ banner, category }) => {
-    const { all_product } = useContext(ShopContext);
+    const [products, setProduct] = useState([]);
 
-    console.log("banner", banner);
-    console.log("category", category);
-    console.log("all_product", all_product);
-
-    // useEffect(() => {
-    //     console.log("banner", banner);
-    //     console.log("category", category);
-    // }, []);
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8080/api/v1/catalog/${category}`)
+            .then((res) => setProduct(res.data.payload));
+    }, [category]);
 
     return (
         <div className="shop-category">
@@ -27,20 +25,20 @@ const ShopCategory = ({ banner, category }) => {
                 </div>
             </div>
             <div className="shopcategory-products">
-                {all_product.map((item, i) => {
-                    if (category === item.category) {
-                        return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} />
-                    }
-                    else {
-                        return null;
-                    }
+                {products.map((item, i) => {
+                    return (
+                        <Item
+                            key={item.product_id}
+                            uuid={item.uuid}
+                            name={item.name}
+                            image={item.avatar}
+                            new_price={item.price}
+                        />
+                    );
                 })}
             </div>
-            <div className="shopcategory-loadmore">
-                    Exlore More
-                </div>
+            <div className="shopcategory-loadmore">Explore More</div>
         </div>
-
-    )
-}
-export default ShopCategory
+    );
+};
+export default ShopCategory;

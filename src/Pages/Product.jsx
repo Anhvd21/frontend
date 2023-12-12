@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../Context/ShopContext";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Breadcrum from "../Compornents/Breadcrums/Breadcrums";
 import ProductDissplay from "../Compornents/ProductDissplay/ProductDissplay";
 import RelateProduct from "../Compornents/RelateProduct/RelateProduct";
+import axios from "axios";
+
 const Product = () => {
-    const { all_product } = useContext(ShopContext)
+    const [product, setProduct] = useState([]);
     const { productId } = useParams();
-
-    console.log("productId", productId);
-
-    const product = all_product.find((e) => e.id === Number(productId));
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8080/api/v1/product/${productId}`)
+            .then((res) => setProduct(res.data.payload));
+    }, [productId]);
 
     console.log("product", product);
-
 
     return (
         <div>
@@ -21,6 +22,6 @@ const Product = () => {
             <ProductDissplay product={product} />
             <RelateProduct />
         </div>
-    )
-}
-export default Product
+    );
+};
+export default Product;

@@ -1,18 +1,36 @@
-import React from "react";
-import "./Popular.css"
-import data_product from '../Assets/data'
+import React, { useEffect, useState } from "react";
+import "./Popular.css";
 import Item from "../Item/Item";
+import axios from "axios";
+
 const Popular = () => {
+    const [collection, setCollection] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/api/v1/product/collection")
+            .then((res) => {
+                setCollection(res.data.payload);
+            });
+    }, []);
     return (
         <div className="popular">
-            <h1>POPULAR IN WOMEN</h1>
-            <hr/>
+            <h1>POPULAR</h1>
+            <hr />
             <div className="popular-item">
-                {data_product.map((item,i)=>{
-                    return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
+                {collection.map((item, i) => {
+                    return (
+                        <Item
+                            key={item.product_id}
+                            uuid={item.uuid}
+                            name={item.name}
+                            image={item.avatar}
+                            new_price={item.price}
+                        />
+                    );
                 })}
             </div>
         </div>
-    )
-}
-export default Popular
+    );
+};
+export default Popular;
