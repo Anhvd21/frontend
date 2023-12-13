@@ -1,9 +1,21 @@
-import React from "react";
-const LoginSignup = () => {
-    return (
-        <div>
+import LoginForm from "../Compornents/login-form";
+import "./index.css";
 
-        </div>
-    )
-}
-export default LoginSignup
+const LoginPage = () => {
+    return (
+        <>
+            <div className="wrapper">
+                <div className="login">
+                    <div className="form-title">
+                        <h2>Welcome back!</h2>
+                    </div>
+                    <div className="login-form">
+                        <LoginForm />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default LoginPage;

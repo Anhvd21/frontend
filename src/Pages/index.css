@@ -1,0 +1,25 @@
+.wrapper {
+    top: 56px;
+    width: 100%;
+    display: block;
+}
+.login {
+    width: 100%;
+    height: 100%;
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-title {
+    text-align: center;
+    color: palevioletred;
+    padding: 24px 0;
+}

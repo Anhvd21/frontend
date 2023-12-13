@@ -54,10 +54,7 @@ const ProductDissplay = (props) => {
                     </div>
                 </div>
                 <div className="productdisplay-right-description">
-                    Feel free to customize the template based on the specific
-                    details of the shirt you're describing. Include information
-                    about the fabric, color, design features, and any unique
-                    qualities that make the shirt stand out.
+                    {product.description}
                 </div>
                 <div className="productdisplay-right-size">
                     <h1>Select Size</h1>
@@ -71,13 +68,13 @@ const ProductDissplay = (props) => {
                 </div>
                 <button
                     onClick={() => {
-                        addToCart(product.id);
+                        addToCart(product.product_id);
                     }}
                 >
                     ADD TO CART
                 </button>
                 <p className="productdisplay-right-category">
-                    <span>Category :</span> Woman, T-Shirt, Crop Top
+                    <span>Category :</span> {product.catalog}
                 </p>
                 <p className="productdisplay-right-category">
                     <span>Tags :</span> Mordern, Lastest

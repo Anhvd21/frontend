@@ -14,8 +14,6 @@ const Product = () => {
             .then((res) => setProduct(res.data.payload));
     }, [productId]);
 
-    console.log("product", product);
-
     return (
         <div>
             <Breadcrum product={product} />

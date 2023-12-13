@@ -2,7 +2,7 @@ import "./App.css";
 import Navbar from "./Compornents/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Shop from "./Pages/Shop";
-import ShopCategory from "./Pages/ShopCategory";
+import ShopCategory from "./Pages/ShopCategory.jsx";
 import Product from "./Pages/Product";
 import Cart from "./Pages/Cart";
 import LoginSignup from "./Pages/LoginSignup";
@@ -10,6 +10,8 @@ import Footer from "./Compornents/Footer/Footer";
 import men_banner from "./Compornents/Assets/banner_mens.png";
 import women_banner from "./Compornents/Assets/banner_women.png";
 import kid_banner from "./Compornents/Assets/banner_kids.png";
+import SignupPage from "./Pages/Signup";
+
 function App() {
     return (
         <div>
@@ -40,6 +42,7 @@ function App() {
                     </Route>
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/login" element={<LoginSignup />} />
+                    <Route path="/auth/signup" element={<SignupPage />} />
                 </Routes>
                 <Footer />
             </BrowserRouter>
